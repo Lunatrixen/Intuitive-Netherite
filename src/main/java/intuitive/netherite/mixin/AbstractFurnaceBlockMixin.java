@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,5 +22,10 @@ public abstract class AbstractFurnaceBlockMixin extends Block {
   @Inject(method = "appendProperties", at = @At("TAIL"))
   private void addSoulChargeProperty(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
     builder.add(SOUL_CHARGED);
+  }
+
+  @Inject(method = "<init>", at = @At("TAIL"))
+  private void setDefaultState(Block.Settings settings, CallbackInfo ci) {
+    setDefaultState(getDefaultState().with(SOUL_CHARGED, false));
   }
 }

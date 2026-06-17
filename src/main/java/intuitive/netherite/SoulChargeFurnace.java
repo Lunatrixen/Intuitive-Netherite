@@ -8,7 +8,6 @@ public interface SoulChargeFurnace {
   BooleanProperty SOUL_CHARGED = BooleanProperty.of("soul_charged");
 
   boolean isUsingSoulCharge();
-
   void setUsingSoulCharge(boolean value);
 
   public static boolean isUsingSoulCharge(BlastFurnaceBlockEntity blastFurnace) {
@@ -16,15 +15,12 @@ public interface SoulChargeFurnace {
   }
 
   ItemStack getLastFuelSnapshot();
-
   void setLastFuelSnapshot(ItemStack stack);
+
+  ItemStack getLastInputSnapshot();
+  void setLastInputSnapshot(ItemStack stack);
 
   default ItemStack getStoredSoulCharge() {
     return ItemStack.EMPTY;
   }
-
-  ItemStack getLastInputSnapshot();
-
-  void setLastInputSnapshot(ItemStack stack);
-
 }
